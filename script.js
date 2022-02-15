@@ -78,12 +78,13 @@ function game() {
     for (let i = 1; i < 6; i ++) {
         // play one round of game
         let playerHand = prompt('What hand will you play? You can choose between rock, paper or scissors');
+        let result = playSingleRound(playerHand, computerPlay());
 
         // If player wins, increment the player's win count
-        if (playSingleRound(playerHand, computerPlay()) === 'Player Wins!') {
+        if (result === 'Player Wins!') {
             playerWinCount += 1;
         // else: increment the computer's win count.
-        } else if (playSingleRound(playerHand, computerPlay()) === 'Computer Wins!') {
+        } else if (result === 'Computer Wins!') {
             computerWinCount += 1;
         }
         // If it's a draw, or a not a real hand, don't increment any counters
