@@ -67,6 +67,37 @@ function playSingleRound(playerSelection, computerSelection) {
     return gameResult;
 }
 
-let playerHand = prompt('What hand will you play? You can choose between rock, paper or scissors');
 
-console.log(playSingleRound(playerHand, computerPlay()));
+// Starts a game, plays for 5 rounds, keeps scores and lets the player know every end of round.
+function game() {
+
+    let playerWinCount = 0;
+    let computerWinCount = 0;
+
+    // Keep a counter that increments by one until it reaches 5
+    for (let i = 1; i < 6; i ++) {
+        // play one round of game
+        let playerHand = prompt('What hand will you play? You can choose between rock, paper or scissors');
+
+        // If player wins, increment the player's win count
+        if (playSingleRound(playerHand, computerPlay()) === 'Player Wins!') {
+            playerWinCount += 1;
+        // else: increment the computer's win count.
+        } else if (playSingleRound(playerHand, computerPlay()) === 'Computer Wins!') {
+            computerWinCount += 1;
+        }
+        // If it's a draw, or a not a real hand, don't increment any counters
+        console.log(`Total Wins: player: ${playerWinCount}, computer: ${computerWinCount}`);
+    }
+
+    if (playerWinCount > computerWinCount) {
+        console.log('Congratulations! You won the game!');
+    } else if (playerWinCount < computerWinCount) {
+        console.log('All hail our computer overlords.');
+    } else {
+        console.log('It\'s a tie!');
+    }
+
+}
+
+game();
