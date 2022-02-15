@@ -77,7 +77,7 @@ function game() {
     // Keep a counter that increments by one until it reaches 5
     for (let i = 1; i < 6; i ++) {
         // play one round of game
-        let playerHand = prompt('What hand will you play? You can choose between rock, paper or scissors');
+        let playerHand = prompt(`Round ${i}: What hand will you play? You can choose between rock, paper or scissors`);
         let result = playSingleRound(playerHand, computerPlay());
 
         // If player wins, increment the player's win count
@@ -87,18 +87,23 @@ function game() {
         } else if (result === 'Computer Wins!') {
             computerWinCount += 1;
         }
+        console.log(result);
         // If it's a draw, or a not a real hand, don't increment any counters
         console.log(`Total Wins: player: ${playerWinCount}, computer: ${computerWinCount}`);
     }
 
-    if (playerWinCount > computerWinCount) {
+    determineWinner(playerWinCount, computerWinCount);
+
+}
+
+function determineWinner(playerCount, computerCount) {
+    if (playerCount > computerCount) {
         console.log('Congratulations! You won the game!');
-    } else if (playerWinCount < computerWinCount) {
+    } else if (playerCount < computerCount) {
         console.log('All hail our computer overlords.');
     } else {
         console.log('It\'s a tie!');
     }
-
 }
 
 game();
