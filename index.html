@@ -9,27 +9,36 @@
     <body>
         <div class="container">
             <div class="round">
-                <p>Round:</p>
+                <div class="round-count-label">Round:</div>
                 <div class="round-counts">0</div>
             </div>
             
             <div class="win-counts">
                 <div class="player">
-                    <div class="player-count-label">Player:</div>
+                    <div class="player-count-label">Player Wins:</div>
                     <div class="player-wins">0</div>
                 </div>
                 
                 <div class="computer">
-                    <div class="computer-count-label">Computer:</div>
+                    <div class="computer-count-label">Computer Wins:</div>
                     <div class="computer-wins">0</div>
                 </div>
             </div>
 
             <div class="buttons">
-                <button class="player-button" id="rock">Rock</button>
-                <button class="player-button" id="paper">Paper</button>
-                <button class="player-button" id="scissors">Scissors</button>
+                <button class="player-button">
+                    <img id="rock" src="./imgs/the_rock.jpg" alt="The Rock">
+                </button>
+                <button class="player-button">
+                    <img id="paper" src="./imgs/paper.jpg" alt="paper">
+                </button>
+                <button class="player-button">
+                    <img id="scissors" src="./imgs/scissors_.jpg" alt="scissors">
+                </button>
             </div>
+            <p>Your hand:</p>
+            <div class="player-choice"></div>
+            <p>Computer hand:</p>
             <div class="computer-choice"></div>
             <div class="results"></div>
             <div class="final-result"></div>

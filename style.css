@@ -6,7 +6,46 @@
 .container {
     padding: 20px;
     margin: 150px auto;
-    height: 30%;
+    min-height: 35%;
     width: 70%;
     background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.round {
+    display: flex;
+}
+
+.win-counts {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player {
+    display: flex;
+}
+
+.computer {
+    display: flex;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.player-button {
+    height: 200px;
+    width: 200px;
+}
+
+.player-button img {
+    width: 100%;
+    height: auto;
 }

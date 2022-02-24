@@ -11,6 +11,8 @@ const playerWinDiv = document.querySelector('.player-wins');
 const computerWinDiv = document.querySelector('.computer-wins');
 const computerChoice = document.querySelector('.computer-choice');
 const finalResultDiv = document.querySelector('.final-result');
+const totalRoundDiv = document.querySelector('.round-counts');
+const playerChoice = document.querySelector('.player-choice');
 
 // randomly return either 'rock', 'paper', or 'scissors.'
 // Input: none
@@ -49,9 +51,9 @@ function playSingleRound(playerSelection, computerSelection) {
     let gameResult;
     let playerSelectionLowerCase = playerSelection.toLowerCase();
     let computerSelectionLowerCase = computerSelection.toLowerCase();
-    console.log('Player:', playerSelectionLowerCase,',', 'Computer:', computerSelectionLowerCase);
 
     if (playerSelectionLowerCase === 'rock') {
+        totalRoundCount ++;
         if (computerSelectionLowerCase === 'paper') {
             gameResult = 'Computer Wins!'
         } else if (computerSelectionLowerCase === 'scissors') {
@@ -60,6 +62,7 @@ function playSingleRound(playerSelection, computerSelection) {
             gameResult = 'It\'s a draw!';
         }
     } else if (playerSelectionLowerCase === 'paper') {
+        totalRoundCount ++;
         if (computerSelectionLowerCase === 'scissors') {
             gameResult = 'Computer Wins!'
         } else if (computerSelectionLowerCase === 'rock') {
@@ -68,6 +71,7 @@ function playSingleRound(playerSelection, computerSelection) {
             gameResult = 'It\'s a draw!';
         }
     } else if (playerSelectionLowerCase === 'scissors') {
+        totalRoundCount ++;
         if (computerSelectionLowerCase === 'rock') {
             gameResult = 'Computer Wins!'
         } else if (computerSelectionLowerCase === 'paper') {
@@ -79,6 +83,7 @@ function playSingleRound(playerSelection, computerSelection) {
         gameResult = 'That\'s not a real hand. Please try again.';
     }
 
+    
     determineRoundWinner(gameResult);
 
     return gameResult;
@@ -107,14 +112,18 @@ function logInnerText(event) {
     console.log(event.target.innerText.toLowerCase());
 }
 
+function playGameandUpdateScore() {
+
+}
 
 playerButtons.forEach(button => {
     button.addEventListener('click', e => {
-        let roundResult = playSingleRound(e.target.innerText.toLowerCase(), computerPlay());
+        let roundResult = playSingleRound(e.target.id.toLowerCase(), computerPlay());
         resultsDiv.textContent = `${roundResult}`;
-        // Display win counts
+        playerChoice.textContent = e.target.id[0].toUpperCase() + e.target.id.slice(1);
         playerWinDiv.textContent = playerWinCount;
         computerWinDiv.textContent = computerWinCount;
+        totalRoundDiv.textContent = totalRoundCount;
         finalResultDiv.textContent =  determineGameWinner(playerWinCount, computerWinCount);
     });
 })
