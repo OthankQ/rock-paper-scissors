@@ -75,22 +75,21 @@ function game() {
     let computerWinCount = 0;
 
     // Keep a counter that increments by one until it reaches 5
-    for (let i = 1; i < 6; i ++) {
-        // play one round of game
-        let playerHand = prompt(`Round ${i}: What hand will you play? You can choose between rock, paper or scissors`);
-        let result = playSingleRound(playerHand, computerPlay());
 
-        // If player wins, increment the player's win count
-        if (result === 'Player Wins!') {
-            playerWinCount += 1;
-        // else: increment the computer's win count.
-        } else if (result === 'Computer Wins!') {
-            computerWinCount += 1;
-        }
-        console.log(result);
-        // If it's a draw, or a not a real hand, don't increment any counters
-        console.log(`Total Wins: player: ${playerWinCount}, computer: ${computerWinCount}`);
+        // play one round of game
+    let playerHand = prompt(`Round 1: What hand will you play? You can choose between rock, paper or scissors`);
+    let result = playSingleRound(playerHand, computerPlay());
+
+    // If player wins, increment the player's win count
+    if (result === 'Player Wins!') {
+        playerWinCount += 1;
+    // else: increment the computer's win count.
+    } else if (result === 'Computer Wins!') {
+        computerWinCount += 1;
     }
+    console.log(result);
+    // If it's a draw, or a not a real hand, don't increment any counters
+    console.log(`Total Wins: player: ${playerWinCount}, computer: ${computerWinCount}`);
 
     determineWinner(playerWinCount, computerWinCount);
 
