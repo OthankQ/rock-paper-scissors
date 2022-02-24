@@ -1,3 +1,17 @@
+let playerWinCount = 0;
+let computerWinCount = 0;
+let totalRoundCount = 0;
+
+const rockButton = document.querySelector('#rock')
+const paperButton = document.querySelector('#paper')
+const scissorsButton = document.querySelector('#scissors')
+const resultsDiv = document.querySelector('.results');
+const playerButtons = document.querySelectorAll('.player-button');
+const playerWinDiv = document.querySelector('.player-wins');
+const computerWinDiv = document.querySelector('.computer-wins');
+const computerChoice = document.querySelector('.computer-choice');
+const finalResultDiv = document.querySelector('.final-result');
+
 // randomly return either 'rock', 'paper', or 'scissors.'
 // Input: none
 // Output: String type, 'Rock' or 'Papaer' or 'Scissors'
@@ -20,6 +34,7 @@ function computerPlay() {
             play = 'Sorry, something went wrong.'
     }
 
+    computerChoice.textContent = play;
     return play;
 }
 
@@ -64,45 +79,42 @@ function playSingleRound(playerSelection, computerSelection) {
         gameResult = 'That\'s not a real hand. Please try again.';
     }
 
+    determineRoundWinner(gameResult);
+
     return gameResult;
 }
 
-
-// Starts a game, plays for 5 rounds, keeps scores and lets the player know every end of round.
-function game() {
-
-    let playerWinCount = 0;
-    let computerWinCount = 0;
-
-    // Keep a counter that increments by one until it reaches 5
-
-        // play one round of game
-    let playerHand = prompt(`Round 1: What hand will you play? You can choose between rock, paper or scissors`);
-    let result = playSingleRound(playerHand, computerPlay());
-
-    // If player wins, increment the player's win count
-    if (result === 'Player Wins!') {
-        playerWinCount += 1;
-    // else: increment the computer's win count.
-    } else if (result === 'Computer Wins!') {
-        computerWinCount += 1;
-    }
-    console.log(result);
-    // If it's a draw, or a not a real hand, don't increment any counters
-    console.log(`Total Wins: player: ${playerWinCount}, computer: ${computerWinCount}`);
-
-    determineWinner(playerWinCount, computerWinCount);
-
-}
-
-function determineWinner(playerCount, computerCount) {
-    if (playerCount > computerCount) {
-        console.log('Congratulations! You won the game!');
-    } else if (playerCount < computerCount) {
-        console.log('All hail our computer overlords.');
-    } else {
-        console.log('It\'s a tie!');
+function determineGameWinner(playerWinCount, computerWinCount) {
+    if (playerWinCount === 5 || computerWinCount === 5){
+        playerButtons.forEach(button => button.disabled = true);
+        if (playerWinCount > computerWinCount) {
+            return 'Congratulations! You won the game!';
+        } else if (playerWinCount < computerWinCount) {
+            return 'All hail our computer overlords.';
+        }
     }
 }
 
-game();
+function determineRoundWinner(string) {
+    if (string === 'Player Wins!') {
+        playerWinCount ++;
+    } else if (string === 'Computer Wins!'){
+        computerWinCount ++;
+    }
+}
+
+function logInnerText(event) {
+    console.log(event.target.innerText.toLowerCase());
+}
+
+
+playerButtons.forEach(button => {
+    button.addEventListener('click', e => {
+        let roundResult = playSingleRound(e.target.innerText.toLowerCase(), computerPlay());
+        resultsDiv.textContent = `${roundResult}`;
+        // Display win counts
+        playerWinDiv.textContent = playerWinCount;
+        computerWinDiv.textContent = computerWinCount;
+        finalResultDiv.textContent =  determineGameWinner(playerWinCount, computerWinCount);
+    });
+})

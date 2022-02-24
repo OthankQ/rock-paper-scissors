@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+    margin: 150px auto;
+    height: 30%;
+    width: 70%;
+    background-color: antiquewhite;
+}
