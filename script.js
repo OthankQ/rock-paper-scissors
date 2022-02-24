@@ -13,6 +13,7 @@ const computerChoice = document.querySelector('.computer-choice');
 const finalResultDiv = document.querySelector('.final-result');
 const totalRoundDiv = document.querySelector('.round-counts');
 const playerChoice = document.querySelector('.player-choice');
+const rockImage = document.querySelector('#rock');
 
 // randomly return either 'rock', 'paper', or 'scissors.'
 // Input: none
@@ -95,6 +96,7 @@ function determineGameWinner(playerWinCount, computerWinCount) {
         if (playerWinCount > computerWinCount) {
             return 'Congratulations! You won the game!';
         } else if (playerWinCount < computerWinCount) {
+            rockImage.src = './imgs/the_rock_crying.jpg';
             return 'All hail our computer overlords.';
         }
     }
